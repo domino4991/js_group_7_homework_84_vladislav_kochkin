@@ -5,7 +5,6 @@ const auth = require('../authMiddleware');
 router.get('/', auth, async (req, res) => {
     try {
         const tasks = await Task.find({user: req.user._id});
-        console.log(tasks);
         if(!tasks || tasks.length === 0) return res.status(404).send({error: '404 not found'});
         return res.send(tasks);
     } catch (e) {
